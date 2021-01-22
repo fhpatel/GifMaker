@@ -36,13 +36,15 @@ const convertToGif = async() => {
       {video && <video 
                 controls
                 width="250"
-                src={URL.createObjectURL(video)}>
+                src={URL.createObjectURL(video)}
+                muted>
         </video>}
       <input type="file" onChange={(e) => setVideo(e.target.files?.item(0))}/>
 
       <h3>Result</h3>
       <button onClick={convertToGif}>Convert</button>
       {gif && <img src={gif} width="250"/>}
+      {gif && <a href={gif} download>Download</a>}
     </div>
   ) :
   (<p>Loading...</p>) ;
