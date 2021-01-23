@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import './index.css';
-
+import Works from './Works';
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const ffmpeg = createFFmpeg({ log: true});
 
@@ -34,19 +34,34 @@ const convertToGif = async() => {
 
   return ready ? (
     <div className="App">
-      {video && <video 
-                controls
-                width="250"
-                src={URL.createObjectURL(video)}
-                muted>
-      </video>}
+      <div class='flex justify-center pt-10 text-6xl'>
+        <h1 class='text-yellow-500 font-sans uppercase font-semibold'> Gif Maker </h1>
+      </div>
+      <Works></Works>
+      <div class='container flex justify-center pt-10 pb-6 m-auto '>
+        {video && <video 
+                  controls
+                  width="500"
+                  src={URL.createObjectURL(video)}
+                  muted>
+        </video>}
+      </div>
+      <div class='pt-6 flex justify-center'>
+        <input type="file" onChange={(e) => setVideo(e.target.files?.item(0))}/>
+      </div>
+      <div class='container flex justify-center m-auto pt-4'>
+        {video && <button class='py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-600' onClick={convertToGif}>Convert</button>}
+      </div>
+      <div class='container flex justify-center m-auto pt-10'>
+        {/* {gif && <h3>Result</h3>} */}
+        {gif && <img src={gif} width="500"/>}
+      </div>
+      <div class='container flex justify-center m-auto pt-5'>
+        {gif && <a class='py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-yellow-500 hover:bg-yellow-600' href={gif} download>Download</a>}
+      </div>
       
-      <input type="file" onChange={(e) => setVideo(e.target.files?.item(0))}/>
 
-      <h3>Result</h3>
-      <button onClick={convertToGif}>Convert</button>
-      {gif && <img src={gif} width="250"/>}
-      {gif && <a href={gif} download>Download</a>}
+      
     </div>
   ) :
   (<p>Loading...</p>) ;
