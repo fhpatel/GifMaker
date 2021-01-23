@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import './index.css';
 
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const ffmpeg = createFFmpeg({ log: true});
@@ -38,7 +39,8 @@ const convertToGif = async() => {
                 width="250"
                 src={URL.createObjectURL(video)}
                 muted>
-        </video>}
+      </video>}
+      
       <input type="file" onChange={(e) => setVideo(e.target.files?.item(0))}/>
 
       <h3>Result</h3>
